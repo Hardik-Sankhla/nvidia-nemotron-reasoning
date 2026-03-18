@@ -8,7 +8,7 @@ Research-driven experiments to improve reasoning accuracy for the NVIDIA Nemotro
 [![Dashboard](https://img.shields.io/badge/Streamlit-Dashboard-f43f5e)](#)
 
 <!-- Hero banner -->
-![Nemotron Banner](assets/banner.png)
+![Nemotron Banner](assets/hero_banner.png)
 
 ## Why This Repo Exists
 
