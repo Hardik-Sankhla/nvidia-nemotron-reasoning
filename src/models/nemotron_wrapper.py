@@ -1,8 +1,23 @@
-"""Wrapper utilities for loading Nemotron base model and applying LoRA adapters."""
-def load_base_model(model_name, dtype='bf16'):
-    # Placeholder: return a model handle
-    return None
+"""High-level wrapper that selects a model backend for inference.
 
-def apply_lora(model, adapter_path):
-    # Placeholder: apply LoRA adapter to model
-    return model
+This wrapper currently supports a `local` backend that uses
+`src.models.local_models.LocalHFModel` for real HF inference.
+It is a thin compatibility layer so the rest of the repo can call
+`.generate(prompt)` uniformly.
+"""
+from .local_models import LocalHFModel
+
+
+class NemotronWrapper:
+    def __init__(self, model_type="local", model_name=None):
+        if model_type == "local":
+            self.model = LocalHFModel(model_name=model_name) if model_name else LocalHFModel()
+        else:
+            raise NotImplementedError(f"model_type {model_type} not implemented")
+
+    def generate(self, prompt, **kwargs):
+        return self.model.generate(prompt, **kwargs)
+
+
+def load_base_model(*args, **kwargs):
+    return NemotronWrapper(*args, **kwargs)
