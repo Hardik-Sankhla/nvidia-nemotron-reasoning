@@ -1,0 +1,9 @@
+extends: base.yaml
+dataset: data/external/novel_benchmark_v1.json
+lora:
+  rank: 16
+  alpha: 32
+  dropout: 0.05
+eval:
+  max_tokens: 4096
+  temperature: 0.0

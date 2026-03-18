@@ -1,0 +1,9 @@
+# Minimal requirements for experiments
+numpy
+pandas
+pyyaml
+torch
+transformers
+accelerate
+datasets
+vllm
