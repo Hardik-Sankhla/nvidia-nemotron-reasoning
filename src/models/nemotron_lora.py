@@ -1,20 +1,41 @@
-"""Phase 3: Nemotron LoRA utilities for producing final submission adapters.
+"""LoRA adapter validation and Kaggle submission packaging helpers."""
 
-This module should include code to:
-- load Nemotron-3-Nano (or compatible checkpoint)
-- configure and run LoRA training (rank <= 32)
-- export the adapter files (adapter_config.json + adapter weights)
-- ensure compatibility with vLLM loading for evaluation
+import os
+import zipfile
 
-Important: final submission must be a LoRA adapter compatible with vLLM.
-"""
 
-def export_lora_adapter(state_dict, out_dir):
-    """Save LoRA adapter artifacts in `out_dir` with adapter_config.json."""
-    # placeholder: implement serialization of LoRA weights and config
-    pass
+def validate_lora(path):
+    required_files = ["adapter_config.json"]
+
+    for file_name in required_files:
+        file_path = os.path.join(path, file_name)
+        if not os.path.exists(file_path):
+            raise ValueError(f"Missing {file_name} in {path}")
+
+    return True
+
+
+def create_submission_zip(lora_path, output="submission.zip"):
+    validate_lora(lora_path)
+
+    with zipfile.ZipFile(output, "w") as zipf:
+        for root, _, files in os.walk(lora_path):
+            for file_name in files:
+                file_path = os.path.join(root, file_name)
+                # keep relative structure inside zip
+                arcname = os.path.relpath(file_path, lora_path)
+                zipf.write(file_path, arcname=arcname)
+
+    return output
+
 
 def ensure_vllm_compatibility(adapter_dir):
-    """Run basic checks to confirm vLLM can load the adapter."""
-    # placeholder checks
-    return True
+    """Basic compatibility guard used before evaluation/submission."""
+    return validate_lora(adapter_dir)
+
+
+def export_lora_adapter(state_dict, out_dir):
+    """Compatibility placeholder for future custom save workflows."""
+    os.makedirs(out_dir, exist_ok=True)
+    # A real implementation can persist state_dict here if needed.
+    return out_dir

@@ -7,3 +7,6 @@ transformers
 accelerate
 datasets
 vllm
+peft
+trl
+streamlit

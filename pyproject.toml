@@ -6,6 +6,17 @@ authors = ["Hardik Sankhla <datascientist.hardiksankhla@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+numpy = "*"
+pandas = "*"
+pyyaml = "*"
+torch = "*"
+transformers = "*"
+accelerate = "*"
+datasets = "*"
+vllm = "*"
+peft = "*"
+trl = "*"
+streamlit = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
