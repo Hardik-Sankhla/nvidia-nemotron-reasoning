@@ -17,6 +17,7 @@ vllm = "*"
 peft = "*"
 trl = "*"
 streamlit = "*"
+matplotlib = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

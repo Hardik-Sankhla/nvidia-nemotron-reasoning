@@ -10,3 +10,4 @@ vllm
 peft
 trl
 streamlit
+matplotlib

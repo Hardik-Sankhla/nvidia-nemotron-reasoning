@@ -1,0 +1,28 @@
+experiment:
+  id: exp_train_default
+  technique: lora
+
+model:
+  name: mistralai/Mistral-7B-Instruct-v0.1
+
+data:
+  train_csv: data/train.csv
+
+lora:
+  rank: 16
+  alpha: 32
+  target_modules:
+    - q_proj
+    - v_proj
+  dropout: 0.05
+
+training:
+  output_dir: ./lora-output
+  batch_size: 2
+  num_train_epochs: 1
+  logging_steps: 10
+  save_steps: 100
+  max_length: 1024
+
+output:
+  adapter_dir: lora_adapter

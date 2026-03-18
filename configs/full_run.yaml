@@ -1,0 +1,20 @@
+experiment:
+  id: exp_full_pipeline
+  technique: cot+self_consistency
+  notes: Full system run
+
+model:
+  type: local
+  name: mistralai/Mistral-7B-Instruct-v0.1
+
+lora:
+  rank: 16
+
+eval:
+  dataset:
+    - prompt: "2+2"
+      answer: "4"
+    - prompt: "5+3"
+      answer: "8"
+  self_consistency_n: 5
+  temperature: 0.7

@@ -48,6 +48,14 @@ Run Full Pipeline
 python scripts/full_run.py
 ```
 
+Config-Driven Runs
+
+```bash
+python scripts/run_pipeline.py --mode train --config configs/train.yaml
+python scripts/run_pipeline.py --mode eval --config configs/eval.yaml
+python scripts/run_pipeline.py --mode full --config configs/full_run.yaml
+```
+
 Run Dashboard
 
 ```bash
