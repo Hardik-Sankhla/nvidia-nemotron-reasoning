@@ -1,0 +1,6 @@
+prompt,answer
+"Solve: 2 + 2","4"
+"Solve: 15 + 27","42"
+"Solve: If x + 2 = 5, find x.","3"
+"Solve: 12 * 8","96"
+"Solve: 100 - 37","63"
